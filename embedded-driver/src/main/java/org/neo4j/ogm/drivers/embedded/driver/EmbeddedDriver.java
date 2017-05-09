@@ -22,7 +22,6 @@ import java.net.URISyntaxException;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.graphdb.factory.GraphDatabaseFactory;
@@ -205,7 +204,7 @@ public class EmbeddedDriver extends AbstractConfigurableDriver {
             URI uri = new URI(strPath);
             File file = new File(uri);
             if (!file.exists()) {
-                Path graphDir = Files.createDirectories(Paths.get(uri.getRawPath()));
+                Path graphDir = Files.createDirectories(file.toPath());
                 logger.warn("Creating new permanent file store: " + graphDir.toString());
             }
         }
