@@ -10,6 +10,7 @@ import org.junit.Test;
 
 public class EmbeddedDriverWithAbsolutePathTest
 {
+  //from issue #179
     @Test
     public void test() {
         final String[] uris = new String[] {
