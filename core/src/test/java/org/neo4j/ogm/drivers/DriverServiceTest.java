@@ -13,14 +13,7 @@
 
 package org.neo4j.ogm.drivers;
 
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.junit.*;
-import org.neo4j.ogm.config.Configuration;
-import org.neo4j.ogm.config.DriverConfiguration;
-import org.neo4j.ogm.driver.Driver;
-import org.neo4j.ogm.drivers.http.driver.HttpDriver;
-import org.neo4j.ogm.service.DriverService;
+import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,7 +21,18 @@ import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import static org.junit.Assert.assertNotNull;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.junit.AfterClass;
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Ignore;
+import org.junit.Test;
+import org.neo4j.ogm.config.Configuration;
+import org.neo4j.ogm.config.DriverConfiguration;
+import org.neo4j.ogm.driver.Driver;
+import org.neo4j.ogm.drivers.http.driver.HttpDriver;
+import org.neo4j.ogm.service.DriverService;
 
 /**
  * @author vince
@@ -69,7 +73,7 @@ public class DriverServiceTest {
     public void shouldLoadEmbeddedDriver() {
         driverConfiguration.setDriverClassName("org.neo4j.ogm.drivers.embedded.driver.EmbeddedDriver");
 
-        String uri = "file://" + TMP_NEO4J_DB;
+        String uri = new File(TMP_NEO4J_DB).toURI().toString();
 
         driverConfiguration.setURI(uri);
 
